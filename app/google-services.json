@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "456770255560",
+    "firebase_url": "https://food-account-cfeaf-default-rtdb.firebaseio.com",
+    "project_id": "food-account-cfeaf",
+    "storage_bucket": "food-account-cfeaf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456770255560:android:80f60e03e70906809643fd",
+        "android_client_info": {
+          "package_name": "com.example.food_account"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456770255560-edl9ernfgnqdqvh8bsctp15o732tgi73.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.food_account",
+            "certificate_hash": "1f12c0de3d9d80f89fe737bcc29e28f3d9c96358"
+          }
+        },
+        {
+          "client_id": "456770255560-urrlqvcjv1r162mr7jm5po9pm3q04ga7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDizgesWTnw1xMQAzMG1Fd8ahCcnW5-CoM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "456770255560-urrlqvcjv1r162mr7jm5po9pm3q04ga7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
