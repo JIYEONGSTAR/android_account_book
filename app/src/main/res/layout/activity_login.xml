@@ -7,14 +7,14 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_margin="30dp"
-        android:layout_height="175dp"
+        android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:src="@drawable/logo" />
 
     <TextView
         android:id="@+id/textView_login"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="100dp"
         android:gravity="center"
         android:text="로그인"
         android:textColor="@color/main"
@@ -51,7 +51,7 @@
             android:id="@+id/button_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/btn"
             android:text="로그인하기"
             android:textColor="@color/white"/>

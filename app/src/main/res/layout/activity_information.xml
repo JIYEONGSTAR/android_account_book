@@ -9,14 +9,14 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_margin="30dp"
-        android:layout_height="175dp"
+        android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:src="@drawable/logo" />
 
     <TextView
         android:id="@+id/textView_info"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="100dp"
         android:gravity="center"
         android:text="기본정보입력"
         android:textColor="@color/main"
@@ -30,7 +30,7 @@
         android:padding="10dp">
 
         <EditText
-            android:id="@+id/editTextTextNickName"
+            android:id="@+id/editText_nickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
