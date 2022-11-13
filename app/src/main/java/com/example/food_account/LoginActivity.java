@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import static com.example.food_account.Util.showToast;
+
 
 public class LoginActivity extends AppCompatActivity {
     private  static final String TAG="LoginActivity";
@@ -43,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
         @Override
             public void onClick(View v){
                 switch(v.getId()){
-
                     case R.id.button_login:
                         Log.e("click","로그인하기");
                         login();
@@ -58,37 +61,40 @@ public class LoginActivity extends AppCompatActivity {
     private void login(){
         String email = ((EditText) findViewById(R.id.editText_email_login)).getText().toString();
         String password = ((EditText) findViewById(R.id.editText_Password_login)).getText().toString();
+        Log.d(TAG, String.valueOf(email.length()));
+        Log.d(TAG, String.valueOf(password.length()));
 
-        if(email.length()>0&&password.length()>0){
-            mAuth.signInWithEmailAndPassword(email,password)
+        if (email.length() > 0 && password.length() > 0) {
+//            final RelativeLayout loaderLayout = findViewById(R.id.loaderLyaout);
+//            loaderLayout.setVisibility(View.VISIBLE);
+            mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+//                            loaderLayout.setVisibility(View.GONE);
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                startToast("로그인이 완료되었습니다.");
-                                startInformationActivity();
+                                showToast(LoginActivity.this, "로그인에 성공하였습니다.");
+                                startMainActivity();
                             } else {
                                 if (task.getException() != null) {
-                                    startToast(task.getException().toString());
+                                    showToast(LoginActivity.this, task.getException().toString());
                                 }
                             }
                         }
                     });
+        } else {
+            showToast(LoginActivity.this, "이메일 또는 비밀번호를 입력해 주세요.");
         }
-    }
-
-    private void startToast(String msg){
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
-
-    private void startInformationActivity(){
-        Intent intent = new Intent(this,InformationActivity.class);
-        startActivity(intent);
     }
 
     private void startSignUpActivity(){
         Intent intent = new Intent(this,SignUpActivity.class);
+        startActivity(intent);
+    }
+    private void startMainActivity(){
+        Intent intent = new Intent(this,MainActivity.class);
+        intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 }

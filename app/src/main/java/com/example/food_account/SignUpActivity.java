@@ -66,7 +66,7 @@ public class SignUpActivity extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     startToast("회원 가입이 완료되었습니다.");
-                                    startLoginActivity();
+                                    startInformationActivity();
                                 } else {
                                     if (task.getException() != null) {
                                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -91,4 +91,10 @@ public class SignUpActivity extends AppCompatActivity {
         Intent intent = new Intent(this,LoginActivity.class);
         startActivity(intent);
     }
+
+    private void startInformationActivity(){
+        Intent intent = new Intent(this,InformationActivity.class);
+        startActivity(intent);
+    }
+
 }

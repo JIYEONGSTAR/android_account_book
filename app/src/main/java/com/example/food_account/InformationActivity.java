@@ -49,12 +49,12 @@ public class InformationActivity extends AppCompatActivity {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             Information information = new Information(nickname,food_expense);
             if(user !=null) {
-                db.collection("member").document(user.getUid()).set(information)
+                db.collection("users").document(user.getUid()).set(information)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 startToast("회원 정보 등록에 성공했습니다.");
-                                startMainActivity();
+                                startLoginActivity();
                                 finish();
                             }
                         })
@@ -76,10 +76,14 @@ public class InformationActivity extends AppCompatActivity {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    private void startMainActivity(){
-        Intent intent = new Intent(this,MainActivity.class);
-        intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
+//    private void startMainActivity(){
+//        Intent intent = new Intent(this,MainActivity.class);
+//        intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        startActivity(intent);
+//    }
+
+    private void startLoginActivity(){
+        Intent intent = new Intent(this,LoginActivity.class);
         startActivity(intent);
     }
-
 }
