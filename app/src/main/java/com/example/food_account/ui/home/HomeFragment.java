@@ -82,14 +82,18 @@
 
 package com.example.food_account.ui.home;
 
+import com.example.food_account.LoginActivity;
 import com.example.food_account.R;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.CalendarView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -101,8 +105,11 @@ import com.example.food_account.decorators.EventDecorator;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import static com.example.food_account.Util.showToast;
 
 public class HomeFragment extends Fragment {
     MaterialCalendarView materialCalendarView;
@@ -136,10 +143,14 @@ public class HomeFragment extends Fragment {
         calendarDayList.add(CalendarDay.from(2022, 10, 25));
 
         materialCalendarView.addDecorator(new EventDecorator(calendarDayList,getActivity()));
+        materialCalendarView.setOnDateChangedListener((eventDay,w,g)->{
+            Log.d("", String.valueOf(eventDay.getSelectedDate()));
+        });
 
 
         return view;
     }
+
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override

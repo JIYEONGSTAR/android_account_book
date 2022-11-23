@@ -9,13 +9,21 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/ic_baseline_arrow_back_24" />
-    <ImageView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginBottom="30dp"
-        android:layout_marginHorizontal="30dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/logo" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_bottom"
+        android:orientation="vertical"
+        android:paddingVertical="30dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginHorizontal="30dp"
+            android:src="@drawable/logo" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView_sign_up"
@@ -23,7 +31,7 @@
         android:layout_height="100dp"
         android:gravity="center"
         android:text="회원가입"
-        android:textColor="@color/main"
+        android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         android:textStyle="bold"/>
 
@@ -38,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
-            android:backgroundTint="@color/main"
+            android:backgroundTint="@color/colorPrimary"
             android:ems="10"
             android:hint="email"
             android:inputType="textEmailAddress" />
@@ -48,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
-            android:backgroundTint="@color/main"
+            android:backgroundTint="@color/colorPrimary"
             android:ems="10"
             android:hint="패스워드"
             android:inputType="textPassword" />
@@ -58,21 +66,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
-            android:backgroundTint="@color/main"
+            android:backgroundTint="@color/colorPrimary"
             android:ems="10"
             android:hint="패스워드 확인"
             android:inputType="textPassword" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/button_sign_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/btn"
+            android:background="@drawable/solid_button"
             android:gravity="center"
             android:text="회원가입하기"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

@@ -4,6 +4,11 @@
     package="com.example.food_account">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:allowBackup="true"
@@ -34,6 +39,9 @@
         <activity android:name=".InformationActivity"
             android:exported="true"
             android:label="INFORMATION"/>
+        <activity android:name=".WritePostActivity"
+            android:exported="true"
+            android:label="POST"/>
     </application>
 
 </manifest>

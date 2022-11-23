@@ -47,7 +47,8 @@ public class InformationActivity extends AppCompatActivity {
         if (nickname.length() > 0 && food_expense>0) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            Information information = new Information(nickname,food_expense);
+            String uid = user.getUid();
+            Information information = new Information(nickname,food_expense,uid);
             if(user !=null) {
                 db.collection("users").document(user.getUid()).set(information)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {

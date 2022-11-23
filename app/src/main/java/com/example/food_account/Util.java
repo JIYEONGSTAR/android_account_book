@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.util.Patterns;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import java.net.URLConnection;
 
 public class Util {

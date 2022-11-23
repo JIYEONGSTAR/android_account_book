@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Food_Account</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">가계부</string>
+    <string name="title_dashboard">통계</string>
+    <string name="title_notifications">정보</string>
+    <string name="star_rating">별점</string>
+    <string name="please_grant_permission">권한을 허용해 주세요.</string>
 </resources>
