@@ -17,12 +17,27 @@
         android:clickable="true"
         android:src="@drawable/ic_baseline_add_24"/>
 
+    <TextView
+        android:id="@+id/textView_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="TextView"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"/>
+
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/materialCalendar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        app:mcv_selectionColor="@color/colorPrimaryDark"
-        tools:ignore="MissingClass"></com.prolificinteractive.materialcalendarview.MaterialCalendarView>
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        app:mcv_selectionColor="@color/colorPrimaryDark">
+
+    </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
+
 
 </RelativeLayout>

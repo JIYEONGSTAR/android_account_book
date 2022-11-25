@@ -60,7 +60,7 @@ public class WritePostActivity extends AppCompatActivity {
     };
 
     private void updateLabel() {
-        String myFormat = "yyyy/MM/dd";    // 출력형식   2021/07/26
+        String myFormat = "yyyy-MM-dd";    // 출력형식   2021/07/26
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
 
         et_date = (EditText) findViewById(R.id.Date);
@@ -72,7 +72,7 @@ public class WritePostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_post);
 
-        String myFormat = "yyyy/MM/dd";    // 출력형식   2021/07/26
+        String myFormat = "yyyy-MM-dd";    // 출력형식   2021/07/26
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
 
         EditText et_Date = (EditText) findViewById(R.id.Date);
@@ -151,7 +151,7 @@ public class WritePostActivity extends AppCompatActivity {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             String uid = user.getUid();
             PostInfo postInfo = new PostInfo(title,price,date,uid,keyword);
-            db.collection("post").document(user.getUid()).collection(date).document().set(postInfo) //  유저 -> 날짜 별 데이터 생성
+            db.collection("post").document().set(postInfo) //  유저 -> 날짜 별 데이터 생성
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
