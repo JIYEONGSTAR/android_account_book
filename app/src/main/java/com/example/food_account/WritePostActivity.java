@@ -72,12 +72,14 @@ public class WritePostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_post);
 
+        //초기 날짜
         String myFormat = "yyyy-MM-dd";    // 출력형식   2021/07/26
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
 
         EditText et_Date = (EditText) findViewById(R.id.Date);
         String today = sdf.format(myCalendar.getTime());
         et_Date.setText(today);
+        //날짜 선택
         et_Date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

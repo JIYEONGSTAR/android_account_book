@@ -11,10 +11,19 @@ public class PostInfo {
     private String date;//날짜
     private String id;
     private String keyword; // 집밥,외식
+    private String documentId;
+
+    public PostInfo(String title, Integer price, String date, String id, String keyword, String documentId) {
+        this.title = title;
+        this.price = price;
+        this.date = date;
+        this.id = id;
+        this.keyword = keyword;
+        this.documentId = documentId;
+    }
 
     public PostInfo(String title, Integer price, String date, String id, String keyword) {
         this.title = title;
-//        this.img = img;
         this.price = price;
         this.date = date;
         this.id = id;
@@ -62,5 +71,12 @@ public class PostInfo {
         this.keyword = keyword;
     }
 
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String id) {
+        this.documentId = documentId;
+    }
 
 }

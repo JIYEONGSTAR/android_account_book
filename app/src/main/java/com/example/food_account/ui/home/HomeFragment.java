@@ -1,85 +1,3 @@
-//package com.example.food_account.ui.home;
-//
-//import com.example.food_account.R;
-//
-//import android.content.Intent;
-//import android.os.Bundle;
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-//import android.widget.TextView;
-//
-//import androidx.annotation.NonNull;
-//import androidx.fragment.app.Fragment;
-//import androidx.lifecycle.ViewModelProvider;
-//
-//import com.example.food_account.WritePostActivity;
-//import com.example.food_account.databinding.FragmentHomeBinding;
-//import com.example.food_account.decorators.EventDecorator;
-//import com.google.firebase.firestore.FirebaseFirestore;
-//import com.prolificinteractive.materialcalendarview.CalendarDay;
-//import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
-//
-//import java.util.ArrayList;
-//
-//public class HomeFragment extends Fragment {
-//
-//    MaterialCalendarView materialCalendarView;
-//    private FirebaseFirestore firebaseFirestore;
-//
-//    private FragmentHomeBinding binding;
-//
-//    public HomeFragment(){
-//        // Required empty public constructor
-//    }
-//
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//    }
-//
-//    public View onCreateView(@NonNull LayoutInflater inflater,
-//                             ViewGroup container, Bundle savedInstanceState) {
-//
-//        HomeViewModel homeViewModel =
-//                new ViewModelProvider(this).get(HomeViewModel.class);
-//
-//        binding = FragmentHomeBinding.inflate(inflater, container, false);
-//        View root = binding.getRoot();
-//
-//        materialCalendarView = (MaterialCalendarView)root.findViewById(R.id.materialCalendar);
-//        ArrayList<CalendarDay> calendarDayList = new ArrayList<>();
-//        calendarDayList.add(CalendarDay.today());
-//        calendarDayList.add(CalendarDay.from(2022, 10, 25));
-//
-//        materialCalendarView.addDecorator(new EventDecorator(calendarDayList,getActivity()));
-//
-//        return root;
-//    }
-//
-////    View.OnClickListener onClickListener = new View.OnClickListener() {
-////        @Override
-////        public void onClick(View v) {
-////            switch (v.getId()) {
-////                case R.id.floatingActionButton:
-////                    startActivity(WritePostActivity.class);
-////                    break;
-////            }
-////        }
-////    };
-//
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        binding = null;
-//    }
-//
-//    private void startActivity(Class c) {
-//        Intent intent = new Intent(getActivity(), c);
-//        startActivityForResult(intent, 0);
-//    }
-//}
-
 package com.example.food_account.ui.home;
 
 import com.example.food_account.PopupActivity;
@@ -91,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -114,11 +33,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
-import org.checkerframework.checker.units.qual.A;
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Locale;
+
 
 public class HomeFragment extends Fragment {
     private static final String TAG = "HomeFragment";
@@ -129,7 +47,6 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
 
     public ArrayList<CalendarDay> calendarDayList = new ArrayList<>();
-    public HashMap<CalendarDay,String> accountData = new HashMap<>();
 
     public ArrayList<String> preData = new ArrayList<>();
     public HomeFragment(){
@@ -179,11 +96,10 @@ public class HomeFragment extends Fragment {
                                 int y = Integer.parseInt(date.toString().split("-")[0]);
                                 int m = Integer.parseInt(date.toString().split("-")[1])-1;
                                 int d = Integer.parseInt(date.toString().split("-")[2]);
-                                Log.d(TAG, document.getId() + " => " + y+m+d);
-//                                addDate(y,m,d);
+                                Log.d(TAG, document.getId() + " => " + y+m+d+"keyword"+document.getData().get("keyword"));
+                                Log.d(TAG,"외식?"+String.valueOf(document.getData().get("keyword").toString().equals("외식")));
                                 calendarDayList.add(CalendarDay.from(y, m, d));
-                                accountData.put(CalendarDay.from(y, m, d),document.getData().get("price").toString());
-                                materialCalendarView.addDecorator(new EventDecorator(accountData,getActivity()));
+                                materialCalendarView.addDecorator(new EventDecorator(calendarDayList,getActivity()));
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -198,9 +114,10 @@ public class HomeFragment extends Fragment {
         materialCalendarView.addDecorators(new SundayDecorator(),new SaturdayDecorator(),new DefaultDecorator());
         materialCalendarView.setOnDateChangedListener((eventDay,w,g)->{
             //클릭 시
-            Log.d("", String.valueOf(eventDay.getSelectedDate()));
+            String myFormat = "yyyy-MM-dd";    // 출력형식   2021-07-26
+            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
             Intent intent = new Intent(getActivity(),PopupActivity.class);
-            intent.putExtra("data", "Test Popup");
+            intent.putExtra("date", sdf.format(eventDay.getSelectedDate().getDate()));
             startActivityForResult(intent, 1);
 
         });
@@ -221,9 +138,6 @@ public class HomeFragment extends Fragment {
         }
     };
 
-//    private void addDate(int y,int m,int d){
-//        calendarDayList.add(CalendarDay.from(y,m,d));
-//    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();
