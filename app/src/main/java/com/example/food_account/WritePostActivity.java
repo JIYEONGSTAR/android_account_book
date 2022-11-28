@@ -49,6 +49,7 @@ public class WritePostActivity extends AppCompatActivity {
     private EditText et_date; //데이트
     private String keyword;
     private Button btn_submit;
+
     DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -60,7 +61,7 @@ public class WritePostActivity extends AppCompatActivity {
     };
 
     private void updateLabel() {
-        String myFormat = "yyyy-MM-dd";    // 출력형식   2021/07/26
+        String myFormat = "yyyy-MM-dd";    // 출력형식   2021-07-26
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
 
         et_date = (EditText) findViewById(R.id.Date);
@@ -73,7 +74,7 @@ public class WritePostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_write_post);
 
         //초기 날짜
-        String myFormat = "yyyy-MM-dd";    // 출력형식   2021/07/26
+        String myFormat = "yyyy-MM-dd";    // 출력형식   2021-07-26
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
 
         EditText et_Date = (EditText) findViewById(R.id.Date);
@@ -145,14 +146,15 @@ public class WritePostActivity extends AppCompatActivity {
 
     private void postUpdate(){
         final String title = ((EditText) findViewById(R.id.editTitle)).getText().toString();
-        final int price = Integer.parseInt(((EditText) findViewById(R.id.editPrice)).getText().toString());
+        final Integer price = Integer.parseInt(((EditText) findViewById(R.id.editPrice)).getText().toString());
         final String date = ((EditText) findViewById(R.id.Date)).getText().toString();
         Log.d(TAG,""+title+price+keyword+date);
-        if (title.length() > 0 && price>0 && keyword.length()>0) { // 입력이 되면
+        if (title.length() > 0 && price >= 0 && keyword.length() > 0) { // 입력이 되면
             user = FirebaseAuth.getInstance().getCurrentUser();
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            String uid = user.getUid();
-            PostInfo postInfo = new PostInfo(title,price,date,uid,keyword);
+            String id = user.getUid();
+            String monthAndYear = date.split("-")[0]+"-"+date.split("-")[1];
+            PostInfo postInfo = new PostInfo(title,price,date,id,keyword,monthAndYear);
             db.collection("post").document().set(postInfo) //  유저 -> 날짜 별 데이터 생성
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

@@ -146,6 +146,7 @@ public class PopupActivity extends AppCompatActivity {
                                         document.getData().get("date").toString(),
                                         document.getData().get("id").toString(),
                                         document.getData().get("keyword").toString(),
+                                        document.getData().get("monthAndYear").toString(),
                                         document.getId()
                                 ));
                             }

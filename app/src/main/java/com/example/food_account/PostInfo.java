@@ -7,27 +7,29 @@ public class PostInfo {
 
     private String title;//이름
     private Integer price;//가격
-//    private ArrayList<String> img;
     private String date;//날짜
-    private String id;
+    private String id; //사용자 id
     private String keyword; // 집밥,외식
     private String documentId;
+    private String monthAndYear;
 
-    public PostInfo(String title, Integer price, String date, String id, String keyword, String documentId) {
+    public PostInfo(String title, Integer price, String date, String id, String keyword, String monthAndYear, String documentId) {
         this.title = title;
         this.price = price;
         this.date = date;
         this.id = id;
         this.keyword = keyword;
+        this.monthAndYear = monthAndYear;
         this.documentId = documentId;
     }
 
-    public PostInfo(String title, Integer price, String date, String id, String keyword) {
+    public PostInfo(String title, Integer price, String date, String id, String keyword,String monthAndYear) {
         this.title = title;
         this.price = price;
         this.date = date;
         this.id = id;
         this.keyword = keyword;
+        this.monthAndYear = monthAndYear;
     }
 
 
@@ -71,6 +73,14 @@ public class PostInfo {
         this.keyword = keyword;
     }
 
+    public String getMonthAndYear() {
+        return monthAndYear;
+    }
+
+    public void setMonthAndYear(String monthAndYear) {
+        this.monthAndYear = monthAndYear;
+    }
+
     public String getDocumentId() {
         return documentId;
     }
@@ -78,5 +88,6 @@ public class PostInfo {
     public void setDocumentId(String id) {
         this.documentId = documentId;
     }
+
 
 }

@@ -43,12 +43,13 @@ public class HomeFragment extends Fragment {
     MaterialCalendarView materialCalendarView;
     private FirebaseFirestore firebaseFirestore;
     private FirebaseUser firebaseUser;
-    private TextView textView_title;
+    private TextView textView_title,textView_left_account;
     private FragmentHomeBinding binding;
 
     public ArrayList<CalendarDay> calendarDayList = new ArrayList<>();
+    public int month_account = 0;
+    public String account = "",month_year = "";
 
-    public ArrayList<String> preData = new ArrayList<>();
     public HomeFragment(){
         // Required empty public constructor
     }
@@ -65,6 +66,7 @@ public class HomeFragment extends Fragment {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         // 타이틀 설정
         textView_title = view.findViewById(R.id.textView_title);
+        textView_left_account = view.findViewById(R.id.textView_left_account);
         DocumentReference docRef = firebaseFirestore.collection("users").document(firebaseUser.getUid());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -74,6 +76,7 @@ public class HomeFragment extends Fragment {
                     if (document != null) {
                         if (document.exists()) {
                             textView_title.setText(document.getData().get("nickname").toString()+"님의 식비가계부");
+                            account = document.getData().get("food_expense").toString();
                         }
                     }
                 }
@@ -83,35 +86,24 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-        firebaseFirestore.collection("post")
-                .whereEqualTo("id", firebaseUser.getUid())
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            Log.d("성공","성공했다."+task.getResult());
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Object date = document.getData().get("date");
-                                int y = Integer.parseInt(date.toString().split("-")[0]);
-                                int m = Integer.parseInt(date.toString().split("-")[1])-1;
-                                int d = Integer.parseInt(date.toString().split("-")[2]);
-                                Log.d(TAG, document.getId() + " => " + y+m+d+"keyword"+document.getData().get("keyword"));
-                                Log.d(TAG,"외식?"+String.valueOf(document.getData().get("keyword").toString().equals("외식")));
-                                calendarDayList.add(CalendarDay.from(y, m, d));
-                                materialCalendarView.addDecorator(new EventDecorator(calendarDayList,getActivity()));
-                            }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
 
         materialCalendarView = (MaterialCalendarView)view.findViewById(R.id.materialCalendar);
         view.findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
-        Log.d(TAG, String.valueOf(calendarDayList));
+        Log.d("calendarday.today", String.valueOf(CalendarDay.today()));
 //        calendarDayList.add(CalendarDay.today());
+        String myMonthFormat = "yyyy-MM";    // 출력형식   2022-11
+        SimpleDateFormat sdf_m = new SimpleDateFormat(myMonthFormat, Locale.KOREA);
+        month_year = sdf_m.format(CalendarDay.today().getDate());
         materialCalendarView.addDecorators(new SundayDecorator(),new SaturdayDecorator(),new DefaultDecorator());
+        materialCalendarView.setOnMonthChangedListener((widget,date)->{
+            String myFormat = "yyyy-MM";    // 출력형식   2022-11
+            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
+            Log.d(TAG, String.valueOf(widget));
+            Log.d(TAG,String.valueOf(date.getDate()));
+            month_year = sdf.format(date.getDate());
+            Log.d(TAG,month_year);
+            itemShow();
+        });
         materialCalendarView.setOnDateChangedListener((eventDay,w,g)->{
             //클릭 시
             String myFormat = "yyyy-MM-dd";    // 출력형식   2021-07-26
@@ -121,9 +113,45 @@ public class HomeFragment extends Fragment {
             startActivityForResult(intent, 1);
 
         });
-
-
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        itemShow();
+    }
+
+    private void itemShow() {
+        firebaseFirestore.collection("post")
+                .whereEqualTo("id", firebaseUser.getUid())
+                .whereEqualTo("monthAndYear",month_year)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            Log.d("성공","성공했다."+task.getResult());
+                            month_account = 0;
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Object date = document.getData().get("date");
+                                int y = Integer.parseInt(date.toString().split("-")[0]);
+                                int m = Integer.parseInt(date.toString().split("-")[1])-1;
+                                int d = Integer.parseInt(date.toString().split("-")[2]);
+                                Log.d(TAG, document.getId() + " => " + y+m+d+"keyword"+document.getData().get("keyword"));
+                                Log.d(TAG,"외식?"+String.valueOf(document.getData().get("keyword").toString().equals("외식")));
+                                calendarDayList.add(CalendarDay.from(y, m, d));
+                                materialCalendarView.addDecorator(new EventDecorator(calendarDayList,getActivity()));
+                                month_account+=Integer.parseInt(document.getData().get("price").toString());
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                        Log.d("돈", String.valueOf(month_account));
+                        textView_left_account.setText("이번달사용량:"+account+"원 중"+month_account+"원 사용");
+                    }
+                });
+
     }
 
 

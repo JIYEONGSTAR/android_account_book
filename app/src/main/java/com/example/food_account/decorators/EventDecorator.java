@@ -2,8 +2,8 @@ package com.example.food_account.decorators;
 
 import com.example.food_account.R;
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.widget.TextView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
@@ -14,14 +14,12 @@ import java.util.HashSet;
 public class EventDecorator implements DayViewDecorator {
 
     private final Drawable drawable;
-    private int color;
     private HashSet<CalendarDay> dates;
-    private TextView textView;
+//    private TextView textView;
     public EventDecorator(Collection<CalendarDay> dates, Activity context) {
         drawable = context.getResources().getDrawable(R.drawable.calendar_background);
-
         this.dates = new HashSet<>(dates);
-        this.textView = textView;
+//        this.textView = textView;
     }
 
     @Override

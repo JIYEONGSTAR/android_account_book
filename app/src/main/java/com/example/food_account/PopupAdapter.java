@@ -14,15 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.food_account.Listener.OnPostListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import org.w3c.dom.Text;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class PopupAdapter extends RecyclerView.Adapter<PopupAdapter.ViewHolder>{
     private  static final String TAG="PopupAdapter";
