@@ -66,21 +66,7 @@ public class HomeFragment extends Fragment {
         // 타이틀 설정
         textView_title = view.findViewById(R.id.textView_title);
         textView_left_account = view.findViewById(R.id.textView_left_account);
-        DocumentReference docRef = firebaseFirestore.collection("users").document(firebaseUser.getUid());
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document != null) {
-                        if (document.exists()) {
-                            account = document.getData().get("food_expense").toString();
-                            textView_title.setText(document.getData().get("nickname").toString()+"님의 식비가계부");
-                        }
-                    }
-                }
-            }
-        });
+
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
@@ -120,6 +106,21 @@ public class HomeFragment extends Fragment {
     }
 
     private void itemShow() {
+        DocumentReference docRef = firebaseFirestore.collection("users").document(firebaseUser.getUid());
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document != null) {
+                        if (document.exists()) {
+                            account = document.getData().get("food_expense").toString();
+                            textView_title.setText(document.getData().get("nickname").toString()+"님의 식비가계부");
+                        }
+                    }
+                }
+            }
+        });
         firebaseFirestore.collection("post")
                 .whereEqualTo("id", firebaseUser.getUid())
                 .whereEqualTo("monthAndYear",month_year)

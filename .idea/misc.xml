@@ -35,7 +35,7 @@
         <entry key="app/src/main/res/layout/activity_whire.xml" value="0.28125" />
         <entry key="app/src/main/res/layout/activity_write_post.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.22792022792022792" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2602935791015625" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_gallery.xml" value="0.13677811550151975" />
         <entry key="app/src/main/res/layout/item_post.xml" value="0.251397705078125" />
