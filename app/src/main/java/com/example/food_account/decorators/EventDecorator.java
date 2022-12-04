@@ -2,7 +2,6 @@ package com.example.food_account.decorators;
 
 import com.example.food_account.R;
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.drawable.Drawable;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
@@ -15,21 +14,19 @@ public class EventDecorator implements DayViewDecorator {
 
     private final Drawable drawable;
     private HashSet<CalendarDay> dates;
-//    private TextView textView;
     public EventDecorator(Collection<CalendarDay> dates, Activity context) {
         drawable = context.getResources().getDrawable(R.drawable.calendar_background);
         this.dates = new HashSet<>(dates);
-//        this.textView = textView;
     }
 
     @Override
     public boolean shouldDecorate(CalendarDay day){
-        return dates.contains(day);
+        return dates.contains(day); // day가 dates에 포함되어있으면
     }
 
     @Override
     public void decorate(DayViewFacade view) {
-        view.setSelectionDrawable(drawable);
+        view.setSelectionDrawable(drawable); // drawable 표시
     }
 
 

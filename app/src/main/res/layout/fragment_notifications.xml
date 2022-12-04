@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@drawable/border_bottom"-->
-<!--        android:orientation="vertical"-->
-<!--        android:paddingVertical="10dp">-->
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:background="@drawable/border_bottom"-->
+    <!--        android:orientation="vertical"-->
+    <!--        android:paddingVertical="10dp">-->
 
-<!--        <ImageView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="100dp"-->
-<!--            android:layout_alignParentTop="true"-->
-<!--            android:layout_marginHorizontal="30dp"-->
-<!--            android:src="@drawable/logo" />-->
-<!--    </LinearLayout>-->
+    <!--        <ImageView-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="100dp"-->
+    <!--            android:layout_alignParentTop="true"-->
+    <!--            android:layout_marginHorizontal="30dp"-->
+    <!--            android:src="@drawable/logo" />-->
+    <!--    </LinearLayout>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,64 +34,63 @@ android:orientation="vertical">
             android:layout_marginHorizontal="30dp"
             android:src="@drawable/logo" />
     </LinearLayout>
-<TextView
-    android:id="@+id/textView_info"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:gravity="center"
-    android:text="기본정보"
-    android:textColor="@color/colorPrimary"
-    android:textSize="30sp"
-    android:textStyle="bold"/>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp">
-
-    <EditText
-        android:id="@+id/edit_info_nickname"
+    <TextView
+        android:id="@+id/textView_info"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:ems="20"
-        android:hint="닉네임"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/edit_info_food_expense"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:ems="20"
-        android:hint="초기 식비"
-        android:inputType="number" />
-
-    <Button
-        android:id="@+id/button_change_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:layout_height="100dp"
         android:gravity="center"
-        android:text="수정하기"
-        android:textColor="@color/white"
+        android:text="기본정보"
+        android:textColor="@color/colorPrimary"
         android:textSize="30sp"
-        android:background="@drawable/solid_button"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/button_logout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:gravity="center"
-        android:text="로그아웃"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:background="@drawable/solid_button"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <EditText
+            android:id="@+id/edit_info_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:ems="20"
+            android:hint="닉네임"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/edit_info_food_expense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:ems="20"
+            android:hint="초기 식비"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/button_change_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/solid_button"
+            android:gravity="center"
+            android:text="수정하기"
+            android:textColor="@color/white"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/button_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/solid_button"
+            android:gravity="center"
+            android:text="로그아웃"
+            android:textColor="@color/white"
+            tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 </LinearLayout>

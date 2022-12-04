@@ -1,4 +1,4 @@
-package com.example.food_account;
+package com.example.food_account.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.food_account.R;
+import com.example.food_account.activities.InformationActivity;
+import com.example.food_account.activities.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -34,7 +37,6 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
@@ -63,7 +65,7 @@ public class SignUpActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
+                                    // 회원가입 성공시 토스트 보여준 후 정보가입으로
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     startToast("회원 가입이 완료되었습니다.");
                                     startInformationActivity();
@@ -88,7 +90,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void startLoginActivity(){
-        Intent intent = new Intent(this,LoginActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 

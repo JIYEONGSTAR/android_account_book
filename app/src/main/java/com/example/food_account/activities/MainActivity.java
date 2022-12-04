@@ -1,13 +1,16 @@
-package com.example.food_account;
+package com.example.food_account.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.example.food_account.ui.dashboard.DashboardFragment;
-import com.example.food_account.ui.home.HomeFragment;
-import com.example.food_account.ui.notifications.NotificationsFragment;
+import com.example.food_account.R;
+import com.example.food_account.activities.InformationActivity;
+import com.example.food_account.activities.LoginActivity;
+import com.example.food_account.fragments.DashboardFragment;
+import com.example.food_account.fragments.HomeFragment;
+import com.example.food_account.fragments.NotificationsFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

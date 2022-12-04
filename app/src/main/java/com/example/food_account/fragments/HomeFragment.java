@@ -1,6 +1,6 @@
-package com.example.food_account.ui.home;
+package com.example.food_account.fragments;
 
-import com.example.food_account.PopupActivity;
+import com.example.food_account.activities.PopupActivity;
 import com.example.food_account.R;
 
 import android.content.Intent;
@@ -9,13 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.food_account.WritePostActivity;
+import com.example.food_account.activities.WritePostActivity;
 import com.example.food_account.databinding.FragmentHomeBinding;
 import com.example.food_account.decorators.DefaultDecorator;
 import com.example.food_account.decorators.EventDecorator;
@@ -75,22 +74,20 @@ public class HomeFragment extends Fragment {
                     DocumentSnapshot document = task.getResult();
                     if (document != null) {
                         if (document.exists()) {
-                            textView_title.setText(document.getData().get("nickname").toString()+"님의 식비가계부");
                             account = document.getData().get("food_expense").toString();
+                            textView_title.setText(document.getData().get("nickname").toString()+"님의 식비가계부");
                         }
                     }
                 }
             }
         });
 
-
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
 
         materialCalendarView = (MaterialCalendarView)view.findViewById(R.id.materialCalendar);
         view.findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
-        Log.d("calendarday.today", String.valueOf(CalendarDay.today()));
-//        calendarDayList.add(CalendarDay.today());
+//        Log.d("calendarday.today", String.valueOf(CalendarDay.today()));
         String myMonthFormat = "yyyy-MM";    // 출력형식   2022-11
         SimpleDateFormat sdf_m = new SimpleDateFormat(myMonthFormat, Locale.KOREA);
         month_year = sdf_m.format(CalendarDay.today().getDate());
@@ -148,7 +145,7 @@ public class HomeFragment extends Fragment {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                         Log.d("돈", String.valueOf(month_account));
-                        textView_left_account.setText("이번달사용량:"+account+"원 중"+month_account+"원 사용");
+                        textView_left_account.setText(account+"원 중 "+month_account+"원 사용");
                     }
                 });
 

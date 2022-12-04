@@ -1,4 +1,4 @@
-package com.example.food_account;
+package com.example.food_account.adapters;
 
 import android.app.Activity;
 import android.util.Log;
@@ -14,7 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.food_account.Listener.OnPostListener;
+import com.example.food_account.PostInfo;
+import com.example.food_account.R;
+import com.example.food_account.listener.OnPostListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 

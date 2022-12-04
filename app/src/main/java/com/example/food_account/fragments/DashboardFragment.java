@@ -1,6 +1,5 @@
-package com.example.food_account.ui.dashboard;
+package com.example.food_account.fragments;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,7 +20,6 @@ import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -41,9 +38,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import org.json.JSONArray;
-
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -172,8 +166,6 @@ public class DashboardFragment extends Fragment {
 
 
     private void printChart() {
-//        Log.d(TAG,"파이");
-//        Log.d("파이", String.valueOf(map)+map.get("집밥")+map.get("외식"));
         pieChart.setUsePercentValues(true);
         pieChart.getDescription().setEnabled(false);
         pieChart.setExtraOffsets(5,10,5,5);
@@ -198,7 +190,6 @@ public class DashboardFragment extends Fragment {
         dataSet.setSliceSpace(3f);
         dataSet.setSelectionShift(5f);
         dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-//        dataSet.setColor(Color.rgb(207, 248, 246),Color.rgb(42, 109, 130));
         PieData data = new PieData((dataSet));
         data.setValueTextSize(10f);
         data.setValueTextColor(Color.YELLOW);
@@ -219,7 +210,6 @@ public class DashboardFragment extends Fragment {
 
         XAxis xAxis = barChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-//        xAxis.setTextSize(10);
         xAxis.setDrawGridLines(false);// 격자선 설정 (default = true)
         xAxis.setDrawAxisLine(false);// x축 선 설정 (default = true)
         xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));

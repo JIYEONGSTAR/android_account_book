@@ -1,8 +1,7 @@
-package com.example.food_account;
+package com.example.food_account.activities;
 
 import static com.example.food_account.Util.showToast;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,20 +15,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.food_account.Listener.OnPostListener;
-import com.example.food_account.decorators.EventDecorator;
+import com.example.food_account.PostInfo;
+import com.example.food_account.R;
+import com.example.food_account.adapters.PopupAdapter;
+import com.example.food_account.listener.OnPostListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 import java.util.ArrayList;
 
@@ -98,7 +96,6 @@ public class PopupActivity extends AppCompatActivity {
                         public void onSuccess(Void aVoid) {
                             showToast(PopupActivity.this, "삭제하였습니다.");
                             startMainActivity();
-//                            itemShow();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -159,8 +156,7 @@ public class PopupActivity extends AppCompatActivity {
     }
 
     private void startMainActivity(){
-        Intent intent = new Intent(this,MainActivity.class);
-//        intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

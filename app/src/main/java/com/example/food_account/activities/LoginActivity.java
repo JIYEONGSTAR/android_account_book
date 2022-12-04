@@ -1,16 +1,15 @@
-package com.example.food_account;
+package com.example.food_account.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.food_account.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,8 +20,8 @@ import static com.example.food_account.Util.showToast;
 
 
 public class LoginActivity extends AppCompatActivity {
-    private  static final String TAG="LoginActivity";
-    private FirebaseAuth mAuth;
+    private  static final String TAG = "LoginActivity";
+    private FirebaseAuth mAuth; //파이어베이스 myAuth
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -65,13 +64,10 @@ public class LoginActivity extends AppCompatActivity {
         Log.d(TAG, String.valueOf(password.length()));
 
         if (email.length() > 0 && password.length() > 0) {
-//            final RelativeLayout loaderLayout = findViewById(R.id.loaderLyaout);
-//            loaderLayout.setVisibility(View.VISIBLE);
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-//                            loaderLayout.setVisibility(View.GONE);
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 showToast(LoginActivity.this, "로그인에 성공하였습니다.");
@@ -89,11 +85,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void startSignUpActivity(){
-        Intent intent = new Intent(this,SignUpActivity.class);
+        Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
     }
     private void startMainActivity(){
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

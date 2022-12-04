@@ -1,9 +1,6 @@
 // 기본 데코레이터, 기록 없다면 클릭 안되게
 package com.example.food_account.decorators;
 
-import android.graphics.Color;
-import android.text.style.ForegroundColorSpan;
-
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
@@ -20,11 +17,11 @@ public class DefaultDecorator implements DayViewDecorator {
     public boolean shouldDecorate(CalendarDay day) {
         day.copyTo(calendar);
         int weekDay = calendar.get(Calendar.DAY_OF_WEEK);
-        return weekDay == (int)weekDay;
+        return weekDay == (int)weekDay; //전체 선택
     }
 
     @Override
     public void decorate(DayViewFacade view) {
-        view.setDaysDisabled(true);
+        view.setDaysDisabled(true); //클릭 안되게
     }
 }

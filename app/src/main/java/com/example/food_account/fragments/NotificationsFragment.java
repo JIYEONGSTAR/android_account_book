@@ -1,4 +1,4 @@
-package com.example.food_account.ui.notifications;
+package com.example.food_account.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,7 +14,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.food_account.Information;
 import com.example.food_account.R;
-import com.example.food_account.SignUpActivity;
+import com.example.food_account.activities.LoginActivity;
+import com.example.food_account.activities.SignUpActivity;
 import com.example.food_account.databinding.FragmentNotificationsBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -76,7 +76,7 @@ public class NotificationsFragment extends Fragment {
                 case R.id.button_logout:
                     Log.e("click","로그아웃하기");
                     FirebaseAuth.getInstance().signOut();
-                    myStartActivity(SignUpActivity.class);
+                    myStartActivity(LoginActivity.class);
                 case R.id.button_change_info:
                     changeInfo();
             }

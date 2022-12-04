@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical">
 
     <LinearLayout
@@ -19,6 +20,7 @@
             android:layout_marginHorizontal="30dp"
             android:src="@drawable/logo" />
     </LinearLayout>
+
     <TextView
         android:id="@+id/textView_info"
         android:layout_width="match_parent"
@@ -27,11 +29,11 @@
         android:text="기본정보입력"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -64,7 +66,6 @@
             android:gravity="center"
             android:text="확인"
             android:textColor="@color/white"
-            android:textSize="30sp"
             tools:ignore="TouchTargetSizeCheck" />
 
     </LinearLayout>

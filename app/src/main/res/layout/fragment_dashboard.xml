@@ -4,25 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.DashboardFragment">
-
+    tools:context=".fragments.DashboardFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:foregroundGravity="center"
+        android:gravity="center"
         android:orientation="vertical"
+        android:paddingTop="10dp"
         android:paddingBottom="70dp">
 
         <EditText
             android:id="@+id/edit_month_year"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginEnd="8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:clickable="true"
             android:focusable="false"
             android:gravity="center"
             android:text="Date"
-            android:textSize="25sp"
+            android:textSize="23sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -104,7 +106,5 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-
-
     </LinearLayout>
 </ScrollView>

@@ -13,18 +13,18 @@ public class SaturdayDecorator implements DayViewDecorator {
 
     private final Calendar calendar = Calendar.getInstance();
 
-    public SaturdayDecorator() {
+    public SaturdayDecorator() { //생성자
     }
 
     @Override
     public boolean shouldDecorate(CalendarDay day) {
         day.copyTo(calendar);
         int weekDay = calendar.get(Calendar.DAY_OF_WEEK);
-        return weekDay == Calendar.SATURDAY;
+        return weekDay == Calendar.SATURDAY; //요일이 토요일인것만
     }
 
     @Override
     public void decorate(DayViewFacade view) {
-        view.addSpan(new ForegroundColorSpan(Color.BLUE));
+        view.addSpan(new ForegroundColorSpan(Color.BLUE)); //토요일은 파란색
     }
 }

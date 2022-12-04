@@ -1,4 +1,4 @@
-package com.example.food_account;
+package com.example.food_account.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.food_account.Information;
+import com.example.food_account.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -74,17 +76,11 @@ public class InformationActivity extends AppCompatActivity {
     }
 
     private void startToast(String msg){
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();//토스트 메세지 보이기
     }
 
-//    private void startMainActivity(){
-//        Intent intent = new Intent(this,MainActivity.class);
-//        intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        startActivity(intent);
-//    }
-
-    private void startLoginActivity(){
-        Intent intent = new Intent(this,LoginActivity.class);
+    private void startLoginActivity(){//로그인액티비티로 가기
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 }
