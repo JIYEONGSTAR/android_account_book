@@ -1,5 +1,6 @@
 package com.example.food_account.fragments;
 
+import com.example.food_account.activities.LoginActivity;
 import com.example.food_account.activities.PopupActivity;
 import com.example.food_account.R;
 
@@ -67,6 +68,11 @@ public class HomeFragment extends Fragment {
         textView_title = view.findViewById(R.id.textView_title);
         textView_left_account = view.findViewById(R.id.textView_left_account);
 
+        if(firebaseUser==null){
+            //firebaseUser가 없을 때 로그인 액티비티로 넘어가기
+            myStartActivity(LoginActivity.class);
+        }
+
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
@@ -102,7 +108,13 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        itemShow();
+        if(firebaseUser==null){
+            //firebaseUser가 없을 때 로그인 액티비티로 넘어가기
+            myStartActivity(LoginActivity.class);
+        }else{
+            itemShow();
+        }
+
     }
 
     private void itemShow() {

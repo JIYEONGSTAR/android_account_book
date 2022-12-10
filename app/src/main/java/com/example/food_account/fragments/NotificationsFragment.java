@@ -41,6 +41,11 @@ public class NotificationsFragment extends Fragment {
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
+        if(firebaseUser==null){
+            //firebaseUser가 없을 때 로그인 액티비티로 넘어가기
+            myStartActivity(LoginActivity.class);
+        }
+
         DocumentReference docRef = firebaseFirestore.collection("users").document(firebaseUser.getUid());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
