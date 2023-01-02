@@ -70,7 +70,12 @@ public class PopupActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        itemShow();
+        if(firebaseUser==null){
+            //firebaseUser가 없을 때 로그인 액티비티로 넘어가기
+            myStartActivity(LoginActivity.class);
+        }else{
+            itemShow();
+        }
 
     }
 
@@ -88,7 +93,6 @@ public class PopupActivity extends AppCompatActivity {
     OnPostListener onPostListener = new OnPostListener() {
         @Override
         public void onDelete(String id) {
-            Log.d(TAG,"document_id: "+id);
             firebaseFirestore.collection("post").document(id)
                     .delete()
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -157,6 +161,10 @@ public class PopupActivity extends AppCompatActivity {
 
     private void startMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    private void myStartActivity(Class c) {
+        Intent intent = new Intent(this, c);
         startActivity(intent);
     }
 }

@@ -68,7 +68,6 @@ public class DashboardFragment extends Fragment {
             myCalendar.set(Calendar.MONTH, monthOfYear);
             myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             updateLabel();
-            Log.d("YearMonthPickerTest", "year = " + year + ", month = " + monthOfYear + ", day = " + dayOfMonth);
         }
     };
 
@@ -141,9 +140,7 @@ public class DashboardFragment extends Fragment {
                             barMap.put("외식", 0);
                             yValues.clear();
                             barValues.clear();
-                            Log.d("성공","성공했다."+task.getResult());
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
 
                                 if(document.getData().get("keyword").equals("집밥")){
                                     map.put("집밥",map.get("집밥")+1);
@@ -154,7 +151,6 @@ public class DashboardFragment extends Fragment {
 
                                 }
                             }
-                            Log.d("결과", String.valueOf(map));
                             printChart();
                             barChart();
                         } else {

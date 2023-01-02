@@ -77,7 +77,6 @@ public class PopupAdapter extends RecyclerView.Adapter<PopupAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        Log.d(TAG, String.valueOf(mDataset));
         TextView titleView = viewHolder.cardView.findViewById(R.id.item_title_textView);
         titleView.setText(mDataset.get(position).getTitle());
 
@@ -85,7 +84,6 @@ public class PopupAdapter extends RecyclerView.Adapter<PopupAdapter.ViewHolder>{
         priceView.setText(mDataset.get(position).getPrice().toString()+"원");
 
         TextView createdAtView = viewHolder.cardView.findViewById(R.id.item_createdAt_textView);
-//        createdAtView.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(mDataset.get(position).getDate()));
         createdAtView.setText(mDataset.get(position).getDate());
 
         TextView keywordView = viewHolder.cardView.findViewById(R.id.item_keyword_textView);
@@ -108,7 +106,6 @@ public class PopupAdapter extends RecyclerView.Adapter<PopupAdapter.ViewHolder>{
                 String documentId = mDataset.get(position).getDocumentId();
                 switch (menuItem.getItemId()) {
                     case R.id.delete:
-                        Log.d(TAG,documentId);
                         onPostListener.onDelete(documentId);
                         return true;
                     default:

@@ -65,22 +65,7 @@ public class YearMonthPickerDialog extends DialogFragment {
         yearPicker.setMaxValue(MAX_YEAR);
         yearPicker.setValue(year);
 
-        builder.setView(dialog)
-        // Add action buttons
-        /*
-        .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-                listener.onDateSet(null, yearPicker.getValue(), monthPicker.getValue(), 0);
-            }
-        })
-        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                MyYearMonthPickerDialog.this.getDialog().cancel();
-            }
-        })
-        */
-        ;
+        builder.setView(dialog);
 
         return builder.create();
     }

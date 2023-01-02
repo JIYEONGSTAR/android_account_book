@@ -93,7 +93,6 @@ public class WritePostActivity extends AppCompatActivity {
     RadioButton.OnClickListener radioButtonClickListener = new RadioButton.OnClickListener(){
         @Override
         public void onClick(View view) {
-
             Log.d(TAG, "집밥 : "+r_btn1.isChecked() + "외식 : " +r_btn2.isChecked());
         }
     };
@@ -136,10 +135,14 @@ public class WritePostActivity extends AppCompatActivity {
         final String title = ((EditText) findViewById(R.id.editTitle)).getText().toString();
         final Integer price = Integer.parseInt(((EditText) findViewById(R.id.editPrice)).getText().toString());
         final String date = ((EditText) findViewById(R.id.Date)).getText().toString();
-        Log.d(TAG,""+title+price+keyword+date);
         if (title.length() > 0 && price >= 0 && keyword.length() > 0) { // 입력이 되면
             user = FirebaseAuth.getInstance().getCurrentUser();
             FirebaseFirestore db = FirebaseFirestore.getInstance();
+            if(user==null){
+                //firebaseUser가 없을 때 로그인 액티비티로 넘어가기
+                myStartActivity(LoginActivity.class);
+                return;
+            }
             String id = user.getUid();
             String monthAndYear = date.split("-")[0]+"-"+date.split("-")[1];
             PostInfo postInfo = new PostInfo(title,price,date,id,keyword,monthAndYear);
@@ -148,7 +151,7 @@ public class WritePostActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             startToast("기록에 성공했습니다.");
-                            startMainActivity();
+                            myStartActivity(MainActivity.class);
                             finish();
                         }
                     })
@@ -166,8 +169,9 @@ public class WritePostActivity extends AppCompatActivity {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    private void startMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
+    private void myStartActivity(Class c) {
+        Intent intent = new Intent(this, c);
         startActivity(intent);
     }
+
 }

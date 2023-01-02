@@ -54,7 +54,6 @@ public class NotificationsFragment extends Fragment {
                     DocumentSnapshot document = task.getResult();
                     if (document != null) {
                         if (document.exists()) {
-                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                             nickName = document.getData().get("nickname").toString();
                             foodExpense = document.getData().get("food_expense").toString();
                             setText(nickName,foodExpense);
@@ -83,7 +82,13 @@ public class NotificationsFragment extends Fragment {
                     FirebaseAuth.getInstance().signOut();
                     myStartActivity(LoginActivity.class);
                 case R.id.button_change_info:
-                    changeInfo();
+                    if(firebaseUser==null){
+                        //firebaseUser가 없을 때 로그인 액티비티로 넘어가기
+                        myStartActivity(LoginActivity.class);
+                    }else{
+                        changeInfo();
+                    }
+
             }
         }
     };
@@ -93,6 +98,11 @@ public class NotificationsFragment extends Fragment {
         int food_expense = Integer.parseInt(e_food_expense.getText().toString());
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user==null){
+            //firebaseUser가 없을 때 로그인 액티비티로 넘어가기
+            myStartActivity(LoginActivity.class);
+            return;
+        }
         String uid = user.getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Information information = new Information(nickname,food_expense,uid);
@@ -109,7 +119,7 @@ public class NotificationsFragment extends Fragment {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG,"회원 정보 수정에 실패했습니다.");
+                        Toast.makeText(getActivity(), "회원 정보 수정에 실패습니다.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

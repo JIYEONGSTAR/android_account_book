@@ -79,7 +79,6 @@ public class HomeFragment extends Fragment {
 
         materialCalendarView = (MaterialCalendarView)view.findViewById(R.id.materialCalendar);
         view.findViewById(R.id.floatingActionButton).setOnClickListener(onClickListener);
-//        Log.d("calendarday.today", String.valueOf(CalendarDay.today()));
         String myMonthFormat = "yyyy-MM";    // 출력형식   2022-11
         SimpleDateFormat sdf_m = new SimpleDateFormat(myMonthFormat, Locale.KOREA);
         month_year = sdf_m.format(CalendarDay.today().getDate());
@@ -87,11 +86,13 @@ public class HomeFragment extends Fragment {
         materialCalendarView.setOnMonthChangedListener((widget,date)->{
             String myFormat = "yyyy-MM";    // 출력형식   2022-11
             SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
-            Log.d(TAG, String.valueOf(widget));
-            Log.d(TAG,String.valueOf(date.getDate()));
             month_year = sdf.format(date.getDate());
-            Log.d(TAG,month_year);
-            itemShow();
+            if(firebaseUser==null){
+                //firebaseUser가 없을 때 로그인 액티비티로 넘어가기
+                myStartActivity(LoginActivity.class);
+            }else{
+                itemShow();
+            }
         });
         materialCalendarView.setOnDateChangedListener((eventDay,w,g)->{
             //클릭 시
@@ -141,15 +142,12 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            Log.d("성공","성공했다."+task.getResult());
                             month_account = 0;
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Object date = document.getData().get("date");
                                 int y = Integer.parseInt(date.toString().split("-")[0]);
                                 int m = Integer.parseInt(date.toString().split("-")[1])-1;
                                 int d = Integer.parseInt(date.toString().split("-")[2]);
-                                Log.d(TAG, document.getId() + " => " + y+m+d+"keyword"+document.getData().get("keyword"));
-                                Log.d(TAG,"외식?"+String.valueOf(document.getData().get("keyword").toString().equals("외식")));
                                 calendarDayList.add(CalendarDay.from(y, m, d));
                                 materialCalendarView.addDecorator(new EventDecorator(calendarDayList,getActivity()));
                                 month_account+=Integer.parseInt(document.getData().get("price").toString());
@@ -157,7 +155,6 @@ public class HomeFragment extends Fragment {
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
-                        Log.d("돈", String.valueOf(month_account));
                         textView_left_account.setText(account+"원 중 "+month_account+"원 사용");
                     }
                 });
